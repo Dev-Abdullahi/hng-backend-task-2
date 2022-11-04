@@ -1,6 +1,6 @@
+const slackUsername = "abdullahi-ts";
 const getIndex = (req, res, next) => {
 
-    const slackUsername = "abdullahi-ts";
     const backend = true;
     const age = 22;
     const bio = "I'm a nodejs backend developer based in Ile-ife Osun state.";
@@ -26,14 +26,14 @@ const postIndex = (req, res, next) => {
         TIMES: "times",
         PLUS: "plus"
     }
-    const operation_type = req.body.operation_type.toLowerCase();
+    let operation_type = req.body.operation_type.toLowerCase();
 
     // if(!OPERATIONS)
     let x = !isNaN(+req.body.x) ? +req.body.x : undefined;
     // console.log(x, "x")
     let y = !isNaN(+req.body.y) ? +req.body.y : undefined;
 
-    let result = undefined;
+    let result = null;
 
     switch (operation_type) {
         case OPERATIONS.ADDITION:
@@ -63,8 +63,8 @@ const postIndex = (req, res, next) => {
 
             }
 
+            operation_type = operation;
             operation = operation.toUpperCase()
-
             // console.log(operation)
             // console.log(numbers)
 
@@ -91,9 +91,8 @@ const postIndex = (req, res, next) => {
     }
 
     res.status(200).json({
+        slackUsername,
         operation_type,
-        x,
-        y,
         result
     })
 }
