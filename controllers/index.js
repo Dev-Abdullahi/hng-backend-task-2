@@ -24,7 +24,8 @@ const postIndex = (req, res, next) => {
         ADD: "add",
         MINUS: "minus",
         TIMES: "times",
-        PLUS: "plus"
+        PLUS: "plus",
+        SUM:'sum'
     }
     let operation_type = req.body.operation_type.toLowerCase();
 
@@ -71,7 +72,7 @@ const postIndex = (req, res, next) => {
             if (OPERATIONS[operation] && numbers.length > 0) {
                 x = numbers[0];
                 y = numbers[1];
-                if (OPERATIONS[operation] === OPERATIONS.ADD || OPERATIONS[operation] === OPERATIONS.ADDITION) {
+                if (OPERATIONS[operation] === OPERATIONS.ADD || OPERATIONS[operation] === OPERATIONS.ADDITION || OPERATIONS[operation].SUM) {
                     result = x + y;
                 }
 
